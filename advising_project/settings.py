@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-011e0ip8&=jyh-95mt_5l53enfsk*-s(##lay_e$p=bo$==6n*"
+# SECRET_KEY = "SECRET_KEY"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -110,23 +110,23 @@ WSGI_APPLICATION = "advising_project.wsgi.application"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 #HEROKU
-if "DYNO" in os.environ and not "CI" in os.environ:
-    DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'duh96u6l1td6p',
-        'USER': 'wwwpvqaxsqnmqq',
-        'PASSWORD': '2f1b154c478a3fafd1b3c585ced6b4dc8c012051f621cc249a6b140c18fef4f7',
-        'HOST': 'ec2-44-218-92-155.compute-1.amazonaws.com',
-        'PORT': '5432',}}
-else:
+# if "DYNO" in os.environ and not "CI" in os.environ:
+#     DATABASES = {
+#     'default': {
+#         'ENGINE': 'DB_ENGINE',
+#         'NAME': 'DB_NAME',
+#         'USER': 'DB_USER',
+#         'PASSWORD': 'DB_PASS',
+#         'HOST': 'DB_HOST',
+#         'PORT': '5432',}}
+# else:
 #LOCAL
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
-        },
-    }
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    },
+}
 
 
 # Password validation
@@ -180,39 +180,38 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-# AWS Configuration
-
-AWS_ACCESS_KEY_ID = 'AKIA4MTWKUDNWCFQZWKK'
-AWS_SECRET_ACCESS_KEY = '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'
-
-# Basic Storage Configuration for Amazon S3
-
-AWS_STORAGE_BUCKET_NAME = 'a-31-whistleblowing-app'
-
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-
-AWS_S3_FILE_OVERWRITE = False
-
-# AWS Storage configuration
-STORAGES = {
-
-    # Media file (images) management
-    "default": {
-        "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
-    },
-
-    # Static file management
-    "staticfiles": {
-        "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
-    },
-}
+# # AWS Configuration
+#
+# AWS_ACCESS_KEY_ID = 'ACCESS_KEY'
+# AWS_SECRET_ACCESS_KEY = 'SECRET_ACCESS_KEY'
+#
+# # Basic Storage Configuration for Amazon S3
+#
+# AWS_STORAGE_BUCKET_NAME = 'BUCKET_NAME'
+#
+# AWS_S3_CUSTOM_DOMAIN = 'DOMAIN' % AWS_STORAGE_BUCKET_NAME
+#
+# AWS_S3_FILE_OVERWRITE = False
+#
+# # AWS Storage configuration
+# STORAGES = {
+#
+#     # Media file (images) management
+#     "default": {
+#         "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
+#     },
+#
+#     # Static file management
+#     "staticfiles": {
+#         "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
+#     },
+# }
 
 # Activate Django-Heroku.
-# Use this code to avoid the psycopg2 / django-heroku error!
-# Do NOT import django-heroku above!
-try:
-    if 'HEROKU' in os.environ:
-        import django_heroku
-        django_heroku.settings(locals())
-except ImportError:
-    found = False
+# Use this code to avoid the psycopg2 / django-heroku error
+# try:
+#     if 'HEROKU' in os.environ:
+#         import django_heroku
+#         django_heroku.settings(locals())
+# except ImportError:
+#     found = False
