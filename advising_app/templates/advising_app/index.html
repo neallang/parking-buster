@@ -1,0 +1,246 @@
+
+
+{% load static %} {% load socialaccount %}
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Home</title>
+		<link
+		href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+		rel="stylesheet"
+		/>
+		<link
+		href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+		rel="stylesheet"
+		/>
+		<link
+			href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+			rel="stylesheet"
+		/>
+		<style>
+			body {
+                padding-bottom: 50px; /* Adjust based on the footer's height */
+				font-family: 'Poppins', sans-serif;
+                h1 {
+                font-size: 45px;
+                }
+            p {
+                font-size: 18px;
+            }
+				background-image: url('https://static.vecteezy.com/system/resources/previews/005/117/235/original/minimalist-dark-gradient-wave-background-simple-design-for-your-website-vector.jpg');
+			
+			
+			}
+            .btn-warning {
+            padding: 4px 6px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            background-color: #007bff;
+            border: none;
+        }
+		
+        .navbar .btn-danger {
+        padding: 4px 6px;
+        text-decoration: none;
+        font-size: 18px;
+        color: white;
+        font-family: 'Poppins', sans-serif;
+    	}
+        .btn-warning:hover {
+            color: black;
+            background-color: #007bff
+        }
+        .btn-danger:hover {
+            color: black;
+			
+			
+        }
+            .navbar a {
+            text-decoration: none;
+            color: inherit; /* Ensures the color is inherited from the button class */
+
+        }
+			.button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+		.text-container {
+            background-color: rgba(0, 0, 48, 0.45);
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+		 
+
+		.btn-custom {
+			background-color: #ffa500;
+			color: white;
+			border: none;
+			padding: 10px 20px;
+			font-size: 22px;
+			margin-top: 10px;
+            position: relative;
+		}
+		.btn-custom:hover {
+            color: black;
+
+        }
+		
+        .button-icon {
+            margin-right: 10px;
+        }
+		.footer{
+			text-align: center;
+			padding: 3px;
+			border-radius: 10px;
+			background-color: #ffa500;
+			color: white;
+			width: 100%;
+			position: fixed;
+			bottom: 0;
+			left: 0;
+		}
+		.title-container {
+			width: 100%;
+			text-align: center;
+			font-size: 50px;
+			padding: 20px 0;
+			color: white;
+			align-items: center;
+		}
+		.main-card {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;  // Optional: depends on how you want to stack the child divs
+			width: 100%;  // Ensure it takes the full width if it is not already doing so
+		}
+		
+		.card {
+			background-color: rgba(0, 0, 64, 0.85);
+			padding: 20px;
+			border-radius: 10px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			width: 45%;
+		}
+		.info-card {
+			width: 80%;
+			padding: 20px;
+			border-radius: 10px;
+			background-color: rgba(0, 0, 48, 0.75);
+			margin-top: 20px; /* Space below the navbar */
+			text-align: center;
+			font-size: 20px;
+		}
+		a {
+			color: white;
+			text-decoration: none;
+		}
+		</style>
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="{% url 'advising_app:index' %}">
+				<span style="
+                font-family: 'Poppins', sans-serif;
+                font-size: 24px;
+                background-color: white;
+                color: black;
+                text-shadow: 1px 1px 2px #ccc;
+                border: 1px solid black; /* Creates a thin black border */
+                border-radius: 3px; /* Optional: Rounds the corners slightly */
+            ">
+                📢 Parking Buster
+
+			</a>
+			<div class="tab">
+				<button class="btn btn-warning">
+					<a href="{% url 'advising_app:about' %}">About Parking Buster</a>
+				</button>
+    			<button class="btn btn-warning">
+					<a href="{% url 'advising_app:us' %}">Meet Us</a>
+				</button>
+			  </div>
+		</nav>
+		<div style="
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;  // Ensures vertical centering within the div itself
+    text-align: center;
+    padding: 20px;
+    font-size: 20px;
+    height: calc(100vh - 160px);  // Adjusts for the nav bar height
+">
+			<div class="info-card">
+				<div class="title-container">Welcome to Parking Buster</div>
+				<p style="color: white">
+					We help you whistleblow on the things that matter most: being able to
+					park your car in peace. Inconsiderate drivers are all around us; let's
+					make them stop together.
+				</p>
+				<p style="color: white">
+					A car is parked between two spots? Report it. <br />
+					A car is diagonal in your spot? Report it.<br />
+					The car next to you won't let you open your door? Report it.
+				</p>
+
+			<div class="main-card">
+				<div style="margin-top: 20px;">
+					<div style="display: flex; justify-content: space-evenly;">
+						<div class="card" style="display: flex; justify-content: space-evenly;">
+							<button class="btn btn-custom">
+								<a href="{% provider_login_url 'google'%}?next=/">
+									<i class="fab fa-google button-icon"></i>
+									Login with Google
+								</a>
+							</button>
+							<div style="display: flex; justify-content: space-evenly;">
+								<h5 style="color: whitesmoke;  padding: 20px;">
+									Allows you to view the progress on your report. Personal information will not be shared. 
+								</h5>
+							</div>
+						</div>
+			
+						<div class= "card" style="display: flex; justify-content: space-evenly;">
+							<button class="btn btn-custom">
+								<a href="{% url 'advising_app:report' %}" >
+									Report Anonymously
+								</a>
+							</button>
+							<div style="display: flex; justify-content: space-evenly;">
+								<h5 style="color: whitesmoke; padding: 20px;">
+									Allows you to file a report without having to share any personal information, but you will not be able to follow up on the progress of your report.
+								</h5>
+							</div>
+						</div>
+					</div>	
+				</div>
+		</div>
+
+		<footer class="footer">
+		<p>Disclaimer: Parking Buster is a class project. No real information should be submitted through this application as the system is not monitored.</p>
+		</footer>
+
+		<footer class="footer">
+		<p>Disclaimer: Parking Buster is a class project. No real information should be submitted through this application as the system is not monitored.</p>
+		</footer>
+
+		<script>
+			function redirectTo(url) {
+				window.location.href = url;
+			}
+		</script>
+</html>

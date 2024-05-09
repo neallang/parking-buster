@@ -1,0 +1,6 @@
+django-allauth
+django-heroku
+django-storages
+boto3
+gunicorn
+psycopg2

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+	<head>
+<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Hi Page</title>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+			rel="stylesheet"
+		/>
+		<style>
+			body {
+                padding-bottom: 50px; /* Adjust based on the footer's height */
+				font-family: 'Poppins', sans-serif;                h1 {
+                font-size: 45px;
+                }
+            p {
+                font-size: 18px;
+            }
+				background-image: url('https://static.vecteezy.com/system/resources/previews/005/117/235/original/minimalist-dark-gradient-wave-background-simple-design-for-your-website-vector.jpg');
+			}
+            .btn-warning {
+            padding: 4px 6px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+			font-family: 'Poppins', sans-serif; 
+			background-color: #007bff;
+            border: none;
+        }
+        .navbar .btn-danger {
+        padding: 4px 6px;
+        text-decoration: none;
+        font-size: 18px;
+        color: white;
+        font-family: 'Poppins', sans-serif;
+    }
+        .btn-warning:hover {
+            color: black;
+            background-color: #007bff
+        }
+        .btn-danger:hover {
+            color: black;
+		}
+            .navbar a {
+            text-decoration: none;
+            color: inherit; /* Ensures the color is inherited from the button class */
+
+        }
+
+		</style>
+
+		<style>
+		
+		.grid-container {
+   		display: flex;  
+    	padding: 20px;
+    	gap: 20px;  
+		align-items: flex-start; 
+		justify-content: center; 
+
+		}
+
+				.status-column {
+			flex: 1; 
+			padding: 10px;
+			box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+			display: flex;
+			flex-direction: column;
+			min-height: 300px; 
+			width: 300px; 
+
+		}
+
+		.report-item {
+    
+			width: 100%; 
+            padding: 10px;
+            margin-bottom: 10px; 
+            background-color: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+			border-radius: 15px; 
+		    transition: background-color 0.3s, box-shadow 0.3s; 
+		}
+
+		.report-item-link {
+			text-decoration: none; 
+			color: inherit; 
+			display: block; 
+		}
+
+		.report-item:hover {
+			background-color: #e0e0e0; 
+			box-shadow: 0 4px 8px rgba(0,0,0,0.2); 
+		}
+
+			.report-detail {
+			font-size: 16px; 
+			display: flex;
+			align-items: center; 
+			margin-bottom: 5px; 
+		}
+
+			.label-strong {
+				color: black;
+				width: 100px; 
+				min-width: 100px; 
+				margin-right: 10px; 
+		}
+
+			.report-detail span {
+				flex-grow: 1; 
+		}
+
+		@media (max-width: 768px) {
+			.grid-container {
+				flex-direction: column; 
+				gap: 10px; 
+			}
+		}
+
+		.footer{
+			text-align: center;
+			padding: 3px;
+			border-radius: 10px;
+			background-color: DarkSalmon;
+			color: white;
+			width: 100%;
+			position: fixed;
+			bottom: 0;
+			left: 0;
+		}
+		</style>
+	</head>
+
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="{% url 'advising_app:index' %}">
+				<span style="
+                font-family: 'Poppins', sans-serif;
+                font-size: 24px;
+                background-color: white;
+                color: black;
+                text-shadow: 1px 1px 2px #ccc;
+                border: 1px solid black; /* Creates a thin black border */
+                border-radius: 3px; /* Optional: Rounds the corners slightly */
+            ">
+                📢 Parking Buster
+            </span>
+			</a>
+			<div class="tab">
+				<button class="btn btn-warning">
+					<a href="{% url 'advising_app:about' %}">About Parking Buster</a>
+				</button>
+    			<button class="btn btn-warning">
+					<a href="{% url 'advising_app:us' %}">Meet Us</a>
+				</button>
+			  </div>
+
+			<!-- Log Out Button -->
+			<div class="ml-auto d-flex align-items-center">
+				<a class="btn btn-danger" href="/logout">Log Out</a>
+			</div>
+		</nav>
+
+
+
+		<div
+		style="
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			text-align: center;
+			max-width: 800px;
+			margin: 50px auto 0;
+			padding: 0 20px;
+		"
+	>
+	<div>
+		<h1 style="color: orange;">Welcome, {{ first_name }}!</h1>
+	    </br></br></br>
+		<h2 style="color: orange;">Submitted User Reports:</h2>
+	</div>
+		<div class="grid-container" id="gridContainer">
+			{% if reports %}
+			<div class="status-column new">
+				<h3 style="color: orange">New</h3>
+				{% for report in new_reports %}
+					<div class="report-item">
+						<a href="{% url 'advising_app:edit_report_admin' report.id %}">
+							<div class="report-detail">
+								<span style="color: black;">{{ report.subject|truncatechars:18 }}</span>
+							</div>
+						</a>
+					</div>
+				{% empty %}
+					<p style="color: white">No new reports.</p>
+				{% endfor %}
+			</div>
+		
+				<div class="status-column in-progress">
+					<h3 style="color: orange">In Progress</h3>
+					{% for report in in_progress_reports %}
+						<div class="report-item">
+							<a href="{% url 'advising_app:edit_report_admin' report.id %}">
+								<div class="report-detail">
+									<span style="color: black;">{{ report.subject|truncatechars:30 }}</span>
+								</div>
+							</a>
+						</div>
+					{% empty %}
+						<p style="color: white">No in-progress reports.</p>
+					{% endfor %}
+				</div>
+		
+				<div class="status-column resolved">
+					<h3 style="color: orange">Resolved</h3>
+					{% for report in resolved_reports %}
+						<div class="report-item">
+							<a href="{% url 'advising_app:edit_report_admin' report.id %}">
+								<div class="report-detail">
+									<span style="color: black;">{{ report.subject|truncatechars:30 }}</span>
+								</div>
+							</a>
+						</div>
+					{% empty %}
+						<p style="color: white">No resolved reports.</p>
+					{% endfor %}
+				  </div>
+				</div>
+			{% else %}
+				<p style="color: white;">No users have submitted reports.</p>
+			
+			{% endif %}
+
+		</div>
+
+			<!-- <div class="grid-container" id="gridContainer">
+				
+				
+			</div>
+			
+			<script>
+				    // Example bucket list
+					var bucketList = bucket_keys;
+
+					// Reference to the grid container
+					var gridContainer = document.getElementById("gridContainer");
+
+					// Dynamically generate grid items based on the bucket list length
+					bucketList.forEach(function(item) {
+						var gridItem = document.createElement("div");
+						gridItem.classList.add("grid-item");
+						gridItem.textContent = item;
+						gridContainer.appendChild(gridItem);
+					});
+			</script> -->
+		<!--
+			{% for file in bucket_keys %} {% if file.extension == '.jpg' %}
+			<li>
+				<img
+					src="{{ file.url }}"
+					alt="{{ file.key }}"
+					style="max-width: 200px; max-height: 200px"
+				/>
+			</li>
+			{% elif file.extension == '.txt' %}
+			<li>
+				<iframe
+					src="{{ file.url }}"
+					style="width: 200px; height: 200px"
+				></iframe>
+			</li>
+			{% elif file.extension == '.pdf' %}
+			<li><a href="{{ file.url }}" target="_blank">PDF: {{ file.key }}</a></li>
+			{% endif %} {% endfor %}
+	-->
+    </body>
+</html>

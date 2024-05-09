@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Report Form</title>
+    <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+    rel="stylesheet"
+    />
+    <link
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        body {
+            padding-bottom: 50px; /* Adjust based on the footer's height */
+            font-family: 'Poppins', sans-serif;
+            h1 {
+                font-size: 45px;
+                }
+            p {
+                font-size: 18px;
+            }
+            background-image: url('https://static.vecteezy.com/system/resources/previews/005/117/235/original/minimalist-dark-gradient-wave-background-simple-design-for-your-website-vector.jpg');
+            background-size: cover;
+            background-position: center;
+            color: whitesmoke;
+        }
+        .btn-warning {
+            padding: 4px 6px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            background-color: #007bff;
+            border: none;
+        }
+        .navbar .btn-danger {
+        padding: 4px 6px;
+        text-decoration: none;
+        font-size: 18px;
+        color: white;
+        font-family: 'Poppins', sans-serif;
+    }
+        .btn-warning:hover {
+            color: black;
+            background-color: #007bff
+        }
+        .btn-danger:hover {
+            color: black;
+
+        }
+            .navbar a {
+            text-decoration: none;
+            color: inherit; /* Ensures the color is inherited from the button class */
+
+        }
+        .back-button {
+        display: inline-block;
+        padding: 8px 18px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 15px;
+        font-size: 18px;
+        margin-top: 25px;
+        margin-left: 25px;
+      }
+        .back-button:hover {
+        text-decoration: none;
+      }
+
+      .back-button:focus {
+        outline: none;
+        text-decoration: none;
+      }
+        .back-button, .back-button:hover, .back-button:focus {
+        text-decoration: none;
+        }
+        .footer{
+			text-align: center;
+			padding: 3px;
+			border-radius: 10px;
+			background-color: #ffa500;
+			color: white;
+			width: 100%;
+			position: fixed;
+			bottom: 0;
+			left: 0;
+		}
+        .btn-warning {
+            padding: 4px 6px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            background-color: #007bff;
+            border: none;
+        }
+        .navbar .btn-danger {
+        padding: 4px 6px;
+        text-decoration: none;
+        font-size: 18px;
+        color: white;
+        font-family: 'Poppins', sans-serif;
+    }
+        .btn-warning:hover {
+            color: black;
+            background-color: #007bff
+        }
+        .btn-danger:hover {
+            color: black;
+
+        }
+            .navbar a {
+            text-decoration: none;
+            color: inherit; /* Ensures the color is inherited from the button class */
+
+        }
+        .back-button {
+        display: inline-block;
+        padding: 8px 18px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 15px;
+        font-size: 18px;
+        margin-top: 25px;
+        margin-left: 25px;
+      }
+        .back-button:hover {
+        text-decoration: none;
+      }
+
+      .back-button:focus {
+        outline: none;
+        text-decoration: none;
+      }
+        .back-button, .back-button:hover, .back-button:focus {
+        text-decoration: none;
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'advising_app:index' %}">
+            <span style="
+                font-family: 'Poppins', sans-serif;
+                font-size: 24px;
+                background-color: white;
+                color: black;
+                text-shadow: 1px 1px 2px #ccc;
+                border: 1px solid black; /* Creates a thin black border */
+                border-radius: 3px; /* Optional: Rounds the corners slightly */
+            ">
+                📢 Parking Buster
+            </span>
+        </a>
+        <div class="tab">
+            <button class="btn btn-warning">
+                <a href="{% url 'advising_app:about' %}">About Parking Buster</a>
+            </button>
+            <button class="btn btn-warning">
+                <a href="{% url 'advising_app:us' %}">Meet Us</a>
+            </button>
+        </div>
+        {% if user.is_authenticated %}
+            <div class="ml-auto d-flex align-items-center">
+                <a class="btn btn-danger" href="/logout">Log Out</a>
+            </div>
+        {% endif %}
+    </nav>
+
+    <a href="javascript:history.back()" class="back-button">&larr;</a>
+
+    <div style="display: flex; flex-direction: column; align-items: center; text-align: center; max-width: 800px; margin: 50px auto 0; padding: 0 20px;">
+        <div>
+            <h1 style="color: #ffa500">New Report</h1>
+            <p><strong>Submit a new report on a car. Please provide a short subject; summary of the situation; and any supporting JPEG, PDF, or TXT files.</strong></p>
+            <form method="post" enctype="multipart/form-data" id="reportForm" action="{% url 'advising_app:submitReport' %}">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="subject">Report Subject (Required)</label>
+                            <input type="text" class="form-control" id="subject" name="subject" placeholder="100-character limit" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="license_plate">License Plate</label>
+                            <input type="text" class="form-control" id="license_plate" name="license_plate" placeholder="(Optional) 20-character limit">
+                        </div>
+                        <div class="form-group">
+                            <label for="make_model">Make/Model</label>
+                            <input type="text" class="form-control" id="make_model" name="make_model" placeholder="(Optional) 100-character limit">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="color">Color</label>
+                            <input type="text" class="form-control" id="color" name="color" placeholder="(Optional) 20-character limit">
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Location</label>
+                            <input type="text" class="form-control" id="location" name="location" placeholder="(Optional) 100-character limit">
+                        </div>
+                        <div class="form-group">
+                            <label for="supportDocs">Upload files</label>
+                            <input type="file" class="form-control-file" id="supportDocs" name="supportDocs" placeholder=".jpg, .jpeg, .pdf, and .png only. One file/report">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description (Required)</label>
+                    <textarea class="form-control" id="description" name="description" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-warning">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('reportForm').addEventListener('submit', function(event) {
+            if (!this.checkValidity()) {
+                event.preventDefault(); // Prevent form from submitting
+                Swal.fire({
+                    title: 'Incomplete Form',
+                    text: 'Please fill out all required fields.',
+                    icon: 'warning',
+                    confirmButtonText: 'OK'
+                });
+            }
+        });
+
+        document.getElementById('reportForm').addEventListener('submit', function(event) {
+            const maxSubjectLength = 100;
+            const maxLicensePlateLength = 20;
+            const maxMakeModelLength = 100;
+            const maxColorLength = 20;
+            const maxLocationLength = 100;
+
+            const subject = document.getElementById("subject").value;
+            const license_plate = document.getElementById("license_plate").value;
+            const make_model = document.getElementById("make_model").value;
+            const color = document.getElementById("color").value;
+            const location = document.getElementById("location").value;
+
+            if (subject.length > maxSubjectLength) {
+                event.preventDefault();
+                Swal.fire({
+                    title: "Exceeds Limit",
+                    text: "Subject field exceeds 100 characters.",
+                    icon: "warning",
+                    confirmButtonText: "OK"
+                });
+                return false;
+            }
+
+            if (license_plate.length > maxLicensePlateLength) {
+                event.preventDefault();
+                Swal.fire({
+                    title: "Exceeds Limit",
+                    text: "License Plate field exceeds 20 characters.",
+                    icon: "warning",
+                    confirmButtonText: "OK"
+                });
+                return false;
+            }
+
+            if (make_model.length > maxMakeModelLength) {
+                event.preventDefault();
+                Swal.fire({
+                    title: "Exceeds Limit",
+                    text: "Make/Model field exceeds 100 characters.",
+                    icon: "warning",
+                    confirmButtonText: "OK"
+                });
+                return false;
+            }
+
+            if (color.length > maxColorLength) {
+                event.preventDefault();
+                Swal.fire({
+                    title: "Exceeds Limit",
+                    text: "Color field exceeds 20 characters.",
+                    icon: "warning",
+                    confirmButtonText: "OK"
+                });
+                return false;
+            }
+
+            if (location.length > maxLocationLength) {
+                event.preventDefault();
+                Swal.fire({
+                    title: "Exceeds Limit",
+                    text: "Location field exceeds 100 characters.",
+                    icon: "warning",
+                    confirmButtonText: "OK"
+                });
+                return false;
+            }
+
+            return true; // Allow form submission if all validations pass
+        });
+
+    </script>
+    <footer class="footer">
+		<p>Disclaimer: Parking Buster is a class project. No real information should be submitted through this application as the system is not monitored.</p>
+	</footer>
+
+</body>
+</html>

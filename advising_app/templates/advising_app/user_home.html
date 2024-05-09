@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>User Home</title>
+		<link
+			href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+			rel="stylesheet"
+		/>
+		<style>
+			body {
+                padding-bottom: 50px; /* Adjust based on the footer's height */
+
+                font-family: 'Poppins', sans-serif;
+                h1 {
+                font-size: 45px;
+                }
+            p {
+                color: white;
+                font-size: 18px;
+            }
+				background-image: url('https://static.vecteezy.com/system/resources/previews/005/117/235/original/minimalist-dark-gradient-wave-background-simple-design-for-your-website-vector.jpg');
+			}
+            .btn-warning {
+            padding: 4px 6px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            background-color: #007bff;
+            border: none;
+        }
+        .navbar .btn-danger {
+        padding: 4px 6px;
+        text-decoration: none;
+        font-size: 18px;
+        color: white;
+        font-family: 'Poppins', sans-serif;
+    }
+        .btn-warning:hover {
+            color: black;
+            background-color: #007bff
+        }
+        .btn-danger:hover {
+            color: black;
+
+        }
+            .navbar a {
+            text-decoration: none;
+            color: inherit; 
+
+        }
+
+		.grid-container {
+   		display: flex;  
+    	padding: 20px;
+    	gap: 20px;  
+		justify-content: center; 
+		align-items: flex-start;
+
+		}
+
+		.status-column {
+			flex: 1; 
+			padding: 10px;
+			box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+			display: flex;
+			flex-direction: column;
+			min-height: 300px; 
+			width: 300px; 
+
+		}	
+		
+		.status-header {
+   			 color: orange;
+    		margin-bottom: 20px; 
+			font-size: 25px;
+		}
+
+		.status-reports {
+    		flex-grow: 1;
+    		overflow: auto; 
+		}
+
+
+
+		.report-item {
+    
+			width: 100%; 
+            padding: 10px;
+            margin-bottom: 10px; 
+            background-color: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+			border-radius: 15px; 
+
+
+		    transition: background-color 0.3s, box-shadow 0.3s; 
+		}
+
+		.report-item-link {
+			text-decoration: none; 
+			color: inherit;
+			display: block; 
+		}
+
+		.report-item:hover {
+			background-color: #e0e0e0; 
+			box-shadow: 0 4px 8px rgba(0,0,0,0.2); 
+		}
+
+			.report-detail {
+			font-size: 16px; 
+			display: flex;
+			align-items: center; 
+			margin-bottom: 5px; 
+		}
+
+			.label-strong {
+				color: black;
+				width: 100px; 
+				min-width: 100px; 
+				margin-right: 10px; 
+		}
+
+			.report-detail span {
+				flex-grow: 1; 
+		}
+
+
+		.footer{
+			text-align: center;
+			padding: 3px;
+			border-radius: 10px;
+			background-color: #ffa500;
+			color: white;
+			width: 100%;
+			position: fixed;
+			bottom: 0;
+			left: 0;
+		}
+
+		</style>
+	<!--
+	
+		.grid-container {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	gap: 20px;
+	padding: 10px;
+	}
+
+		.grid-item {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 10px;
+	border: 1px solid #ccc;
+	padding: 10px;
+	background-color: white;
+	box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+	border-radius: 10px; 
+	}
+
+
+		.item-status a, .item-username a {
+	display: block;
+	padding: 5px;
+	color: black; /* Set text color */
+	text-decoration: none; /* Remove underline from links */
+	}
+
+		.item-subject a:hover, .item-status a:hover, .item-username a:hover {
+	background-color: #e0e0e0; /* Light grey background on hover for visibility */
+	}
+
+	/* Additional styling for each item type */
+		.item-status span {
+	color: black;
+	}
+
+		.item-username span {
+	color: black;
+	}
+
+		a:hover {
+	text-decoration: none; /* Ensure no underline appears on hover */
+	}
+
+
+	</style>
+-->
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="{% url 'advising_app:index' %}">
+				<span style="
+                font-family: 'Arial Black', sans-serif;
+                font-size: 24px;
+                background-color: white;
+                color: black;
+                text-shadow: 1px 1px 2px #ccc;
+                border: 1px solid black; /* Creates a thin black border */
+                border-radius: 3px; /* Optional: Rounds the corners slightly */
+            ">
+                📢 Parking Buster
+            </span>
+			</a>
+			<div class="tab">
+				<button  class="btn btn-warning">
+					<a href="{% url 'advising_app:about' %}">About Parking Buster</a>
+				</button>
+				<button  class="btn btn-warning">
+					<a href="{% url 'advising_app:us' %}">Meet Us</a>
+				</button>
+			</div>
+
+			<!-- Log Out Button -->
+			<div class="ml-auto d-flex align-items-center">
+				<a class="btn btn-danger" href="/logout">Log Out</a>
+			</div>
+		</nav>
+
+		<div
+			style="
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				text-align: center;
+				max-width: 800px;
+				margin: 50px auto 0;
+				padding: 0 20px;
+			"
+		>
+			<div>
+				{% if user.first_name == '' %}
+				<h1 style="color: orange">You're logged in as a Django Admin!</h1>
+				{% else %}
+				<h1 style="color: orange">Welcome, {{ first_name }}!</h1>
+				{% endif %}
+				<p style="color: whitesmoke">
+					Annoying drivers always make your day so much harder to get through.
+					Let's go ahead and make life a little easier for the next person stuck
+					next to this car.
+				</p>
+
+			</div>
+				<button class="btn btn-warning">
+<a href="{% url 'advising_app:report' %}" class="btn btn-warning">New Report</a>
+				</button>
+
+				<div style="margin-top: 40px; color: white">
+					<h2 style="color: orange">Your Reports</h2>
+					<p>
+						View your old reports, follow up on status, and delete any reports
+						you no longer want to have addressed.
+					</p>
+				</div>
+					<ul style="list-style-type: none; padding: 0">
+						<div class="grid-container" id="gridContainer">
+							{% if reports %}
+							<div class="status-column new">
+								<div class="status-header">New</div>
+								<div class="status-reports">
+								{% for report in new_reports %}
+									<div class="report-item">
+										<a href="{% url 'advising_app:view_report_user' report.id %}">
+											<div class="report-detail">
+												<span style="color: black;">{{ report.subject|truncatechars:18 }}</span>
+											</div>
+										</a>
+									</div>
+								{% empty %}
+									<p style="color: white">No new reports.</p>
+								{% endfor %}
+							</div>
+						</div>
+
+						
+								<div class="status-column in-progress">
+									<div class="status-header">In Progress</div>
+									<div class="status-reports">
+									{% for report in in_progress_reports %}
+										<div class="report-item">
+											<a href="{% url 'advising_app:view_report_user' report.id %}">
+												<div class="report-detail">
+													<span style="color: black;">{{ report.subject|truncatechars:30 }}</span>
+												</div>
+											</a>
+										</div>
+									{% empty %}
+										<p style="color: white">No in-progress reports.</p>
+									{% endfor %}
+								</div>
+							</div>
+						
+								<div class="status-column resolved">
+									<div class="status-header">Resolved</div>
+									<div class="status-reports">
+									{% for report in resolved_reports %}
+										<div class="report-item">
+											<a href="{% url 'advising_app:view_report_user' report.id %}">
+												<div class="report-detail">
+													<span style="color: black;">{{ report.subject|truncatechars:30 }}</span>
+												</div>
+											</a>
+										</div>
+									{% empty %}
+										<p style="color: white">No resolved reports.</p>
+									{% endfor %}
+								</div>
+							</div>
+						</div>
+							{% else %}
+							<div class="no-reports">
+								<p style="color: white">
+
+								Your reports will come here. Let's get started with a report today.
+
+								</p>
+
+								
+							</div>	
+							{% endif %}
+						</div>
+				</div>
+			</div>
+		</div>
+		<footer class="footer">
+		<p>Disclaimer: Parking Buster is a class project. No real information should be submitted through this application as the system is not monitored.</p>
+		</footer>
+	
+	</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Confirm Logout</title>
+		<!-- Updated Bootstrap CSS link -->
+		<link
+		href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+		rel="stylesheet"
+		/>
+		<link
+			href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+			rel="stylesheet"
+		/>
+		<style>
+			body {
+                padding-bottom: 50px; /* Adjust based on the footer's height */
+				font-family: 'Poppins', sans-serif;
+				background-image: url('https://static.vecteezy.com/system/resources/previews/005/117/235/original/minimalist-dark-gradient-wave-background-simple-design-for-your-website-vector.jpg');
+				background-size: cover;
+				height: 100vh;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				color: #fff;
+				padding-top: 70px; /* Adjusted padding to account for the navbar */
+			}
+			h1 {
+				font-size: 45px; /* Larger font size for headings */
+			}
+			p {
+				font-size: 18px; /* Larger font size for paragraph text */
+			}
+			.navbar {
+				width: 100%; /* Full width */
+				position: fixed; /* Fixed at the top */
+				top: 0; /* Stick to the top */
+			}
+			.content-box {
+				border: 4px solid orange;
+				border-radius: 10px;
+				padding: 40px;
+				max-width: 80%;
+				margin: auto; /* Centers the box horizontally */
+				display: flex;
+				flex-direction: column; /* Aligns children (h1, p, buttons) in a column */
+				align-items: center; /* Centers the children horizontally */
+				justify-content: center; /* Centers the children vertically */
+				text-align: center; /* Centers the text within each child */
+			}
+
+			.logout-button{
+				color: white;
+                background-color: red;
+				padding: 15px 30px;
+				margin: 10px;
+				cursor: pointer;
+				transition: background-color 0.3s, color 0.3s;
+			}
+            .return-button {
+				color: white;
+                background-color: #007bff;
+				padding: 15px 30px;
+				margin: 10px;
+				cursor: pointer;
+				transition: background-color 0.3s, color 0.3s;
+			}
+			.logout-button:hover {
+				background-color: red;
+			}
+            .return-button:hover {
+				background-color: #007bff;
+			}
+            .btn-warning {
+            padding: 4px 6px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            background-color: #007bff;
+            border: none;
+        }
+        .navbar .btn-danger {
+        padding: 4px 6px;
+        text-decoration: none;
+        font-size: 18px;
+        color: white;
+        font-family: 'Poppins', sans-serif;
+    }
+        .btn-warning:hover {
+            color: black;
+            background-color: #007bff
+        }
+        .btn-danger:hover {
+            color: black;
+
+        }
+        .navbar a {
+            text-decoration: none;
+            color: inherit; /* Ensures the color is inherited from the button class */
+
+        }
+		.footer{
+			text-align: center;
+			padding: 3px;
+			border-radius: 10px;
+			background-color: #ffa500;
+			color: white;
+			width: 100%;
+			position: fixed;
+			bottom: 0;
+			left: 0;
+		}
+		</style>
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="{% url 'advising_app:index' %}">
+				<span style="
+                font-family: 'Poppins', sans-serif;
+                font-size: 24px;
+                background-color: white;
+                color: black;
+                text-shadow: 1px 1px 2px #ccc;
+                border: 1px solid black; /* Creates a thin black border */
+                border-radius: 3px; /* Optional: Rounds the corners slightly */
+            ">
+                📢 Parking Buster
+            </span>
+			</a>
+			<div class="tab">
+				<button class="btn btn-warning">
+					<a href="{% url 'advising_app:about' %}">About Parking Buster</a>
+				</button>
+				<button class="btn btn-warning">
+					<a href="{% url 'advising_app:us' %}">Meet Us</a>
+				</button>
+			</div>
+		</nav>
+
+		<div class="content-box">
+			<h1>Confirm Logout</h1>
+			<p>Are you sure you want to log out?</p>
+			<button
+				class="btn logout-button"
+				onclick="document.getElementById('logout-form').submit();"
+			>
+				Logout
+			</button>
+			<button class="btn return-button" onclick="history.back();">
+				Return
+			</button>
+			<form
+				id="logout-form"
+				action="{% url 'advising_app:perform_logout' %}"
+				method="post"
+				style="display: none"
+			>
+				{% csrf_token %}
+			</form>
+		</div>
+		<footer class="footer">
+		<p>Disclaimer: Parking Buster is a class project. No real information should be submitted through this application as the system is not monitored.</p>
+		</footer>
+	
+	</body>
+</html>

@@ -1,0 +1,1 @@
+web: gunicorn advising_project.wsgi

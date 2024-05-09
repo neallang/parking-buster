@@ -1,0 +1,173 @@
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Home</title>
+    <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+    rel="stylesheet"
+    />
+    <link
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        rel="stylesheet"
+    />
+    <style>
+        body {
+            padding-bottom: 50px;
+
+            font-family: 'Poppins', sans-serif;
+            h1 {
+                font-size: 45px;
+                }
+            p {
+                font-size: 18px;
+            }
+            background-image: url('https://static.vecteezy.com/system/resources/previews/005/117/235/original/minimalist-dark-gradient-wave-background-simple-design-for-your-website-vector.jpg');
+        }
+        .btn-warning {
+            padding: 4px 6px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            background-color: #007bff;
+            border: none;
+        }
+        .back-button {
+            display: inline-block;
+            padding: 8px 18px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 18px;
+        }
+        .back-button:hover, .back-button:focus {
+            text-decoration: none;
+        }
+        .navbar .btn-danger {
+        padding: 4px 6px;
+        text-decoration: none;
+        font-size: 18px;
+        color: white;
+        font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-warning:hover {
+            color: black;
+            background-color: #007bff
+        }
+        .btn-danger:hover {
+            color: black;
+
+        }
+            .navbar a {
+            text-decoration: none;
+            color: inherit; /* Ensures the color is inherited from the button class */
+
+        }
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .image, .text {
+            flex: 1;
+            padding: 20px 20px;
+        }
+        img {
+            max-width: 100%; 
+            height: auto;
+        }
+        .text-container {
+            background-color: rgba(0, 0, 48, 0.45);
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+        .body-container {
+            background-color: rgba(0, 0, 48, 0.45);
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+        .footer{
+			text-align: center;
+			padding: 3px;
+			border-radius: 10px;
+			background-color: #ffa500;
+			color: white;
+			width: 100%;
+			position: fixed;
+			bottom: 0;
+			left: 0;
+		}
+    </style>
+</head>
+
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'advising_app:index' %}">
+            <span style="
+                font-family: 'Poppins', sans-serif;
+                font-size: 24px;
+                background-color: white;
+                color: black;
+                text-shadow: 1px 1px 2px #ccc;
+                border: 1px solid black; /* Creates a thin black border */
+                border-radius: 3px; /* Optional: Rounds the corners slightly */
+            ">
+                📢 Parking Buster
+            </span>
+        </a>
+        <div class="tab">
+            <button class="btn btn-warning">
+                <a href="{% url 'advising_app:about' %}">About Parking Buster</a>
+            </button>
+            <button class="btn btn-warning">
+                <a href="{% url 'advising_app:us' %}">Meet Us</a>
+            </button>
+          </div>
+        {% if user.is_authenticated %}
+            <div class="ml-auto d-flex align-items-center">
+                <a class="btn btn-danger" href="/logout">Log Out</a>
+            </div>
+        {% endif %}
+    </nav>
+
+
+    <div class="text-container">
+        <h1 style="color: whitesmoke">
+            About Parking Buster
+        </h1>
+    </div>
+
+    <a href="javascript:history.back()" class="back-button" style="margin-left: 30px">&larr;</a>
+
+
+    <div class="container">
+        <div class="image">
+            <img src="https://www.keflatwork.com/wp-content/uploads/2020/04/shutterstock_401478484.jpg" alt="Blue car parking">
+        </div>
+        <div class="text">
+            <p style="color: whitesmoke">The average person spends over 4.3 years of their life in their car. While some of this time can be relaxing bliss on a scenic drive through the mountains of the Shenandoah National Park, a lot of it can be stressful. Between bumper to bumper traffic, fender benders, and aggressive drivers there is plenty to be frustrated about. Here at Parking Buster, we want to make parking a little less stressful for you. 
+            </p>
+        </div>
+    </div>
+      
+    <div class="container">
+        <div class="text">
+            <p style="color: whitesmoke">We are here to facilitate anything you feel the need to report to make your experience in any parking lot safer and more enjoyable. Some people just need a reminder to stay in their lane and we are here to provide it while keeping you anonymous. </p>
+        </div>
+        <div class="image">
+            <img src="https://www.shutterstock.com/image-illustration/bad-driver-on-parking-600nw-256691737.jpg" alt="Red car - Bad parking">
+        </div>
+    </div>
+    </body>
+<footer class="footer">
+		<p>Disclaimer: Parking Buster is a class project. No real information should be submitted through this application as the system is not monitored.</p>
+	</footer>

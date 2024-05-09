@@ -1,0 +1,283 @@
+{% load static %}
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Home</title>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+		rel="stylesheet"
+	/>
+	<link
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		rel="stylesheet"
+	/>
+	<style>
+		body {
+			padding-bottom: 50px; /* Adjust based on the footer's height */
+			font-family: 'Poppins', sans-serif;
+			h1 {
+				font-size: 45px;
+			}
+			p {
+				font-size: 18px;
+			}
+			background-image: url('https://static.vecteezy.com/system/resources/previews/005/117/235/original/minimalist-dark-gradient-wave-background-simple-design-for-your-website-vector.jpg');
+		}
+		.btn-warning {
+			padding: 4px 6px;
+			text-decoration: none;
+			font-size: 18px;
+			color: white;
+			font-family: 'Poppins', sans-serif;
+			background-color: #007bff;
+			border: none;
+		}
+		.navbar .btn-danger {
+			padding: 4px 6px;
+			text-decoration: none;
+			font-size: 18px;
+			color: white;
+			font-family: 'Poppins', sans-serif;
+		}
+		.btn-warning:hover {
+			color: black;
+			background-color: #007bff;
+		}
+		.btn-danger:hover {
+			color: black;
+		}
+		.back-button {
+			display: inline-block;
+			padding: 8px 18px;
+			background-color: #007bff;
+			color: white;
+			text-decoration: none;
+			border-radius: 15px;
+			font-size: 18px;
+		}
+		.back-button:hover,
+		.back-button:focus {
+			text-decoration: none;
+		}
+		.navbar a {
+			text-decoration: none;
+			color: inherit; /* Ensures the color is inherited from the button class */
+		}
+		.shaded-container {
+			background-color: rgba(0, 0, 48, 0.45);
+			padding: 20px;
+			border-radius: 10px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		.footer {
+			text-align: center;
+			padding: 3px;
+			border-radius: 10px;
+			background-color: #ffa500;
+			color: white;
+			width: 100%;
+			position: fixed;
+			bottom: 0;
+			left: 0;
+		}
+	</style>
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href="{% url 'advising_app:index' %}">
+			<span
+				style="
+					font-family: 'Poppins', sans-serif;
+					font-size: 24px;
+					background-color: white;
+					color: black;
+					text-shadow: 1px 1px 2px #ccc;
+					border: 1px solid black; /* Creates a thin black border */
+					border-radius: 3px; /* Optional: Rounds the corners slightly */
+				"
+			>
+				📢 Parking Buster
+			</span>
+		</a>
+		<div class="tab">
+			<button class="btn btn-warning">
+				<a href="{% url 'advising_app:about' %}">About Parking Buster</a>
+			</button>
+			<button class="btn btn-warning">
+				<a href="{% url 'advising_app:us' %}">Meet Us</a>
+			</button>
+		</div>
+		{% if user.is_authenticated %}
+		<div class="ml-auto d-flex align-items-center">
+			<a class="btn btn-danger" href="/logout">Log Out</a>
+		</div>
+		{% endif %}
+	</nav>
+
+	<div class="shaded-container">
+		<h1 style="color: whitesmoke">Meet Us</h1>
+	</div>
+
+	<a
+		href="javascript:history.back()"
+		class="back-button"
+		style="margin-left: 30px"
+		>&larr;</a
+	>
+
+	<div style="margin-top: 50px">
+		<!-- First row: image and text -->
+		<div style="display: flex; align-items: center">
+			<img
+				src="https://a-31-whistleblowing-app.s3.us-east-2.amazonaws.com/advising_app/images/neallang.jpg"
+				alt="neallang.jpg"
+				style="
+					max-width: 250px;
+					min-width: 150px;
+					height: auto;
+					margin-left: 200px;
+				"
+			/>
+
+			<div style="margin-left: 20px; padding-right: 75px; padding-left: 25px">
+				<p style="color: white">
+					Neal Langhorne is a third-year student at the University of Virginia
+					studying Computer Science with a minor in Leadership. He is passionate
+					about bridging the gap between technology and people, and enjoys
+					working on collaborative projects and finding innovative solutions to
+					do so. He was the DevOps manager in this project.
+				</p>
+				<p style="color: white">
+					Interests: working out, snowboarding, rap music, video games, bowling,
+					cooking, basketball, spending quality time with friends.
+				</p>
+			</div>
+		</div>
+
+		<!-- Second row: image and text -->
+		<div style="display: flex; align-items: center; margin-top: 20px">
+			<img
+				src="https://a-31-whistleblowing-app.s3.us-east-2.amazonaws.com/advising_app/images/saumya.jpg"
+				alt="saumya.png"
+				style="
+					max-width: 250px;
+					min-width: 150px;
+					height: auto;
+					margin-left: 200px;
+				"
+			/>
+
+			<div style="margin-left: 20px; padding-right: 75px; padding-left: 25px">
+				<p style="color: white">
+					Saumya Sharma is a student at the University of Virginia studying
+					Global Public Health and minoring in Computer Science. Through lab
+					research and writing for the Cavalier Daily, she is trying to learn
+					how to make complex concepts easy to convey. She was the Scrum Master
+					in this project.
+				</p>
+				<p style="color: white">
+					Interests: plants, reading, running, scuba diving, traveling.
+				</p>
+			</div>
+		</div>
+
+		<!-- Third row: image and text -->
+		<div style="display: flex; align-items: center; margin-top: 20px">
+			<img
+				src="https://a-31-whistleblowing-app.s3.us-east-2.amazonaws.com/advising_app/images/vaughn.jpg"
+				alt="vaughn.jpg"
+				style="
+					max-width: 250px;
+					min-width: 150px;
+					height: auto;
+					margin-left: 200px;
+				"
+			/>
+
+			<div style="margin-left: 20px; padding-right: 75px; padding-left: 25px">
+				<p style="color: white">
+					Vaughn Scott is a third-year student at University of Virginia
+					studying computer science. Vaughn has a passion for cybersecurity and
+					considers himself to be a lifelong learner. He was the testing manager
+					in this project.
+				</p>
+				<p style="color: white">
+					Interests: exercising/fitness, learning languages, reading, public
+					policy & politics, self-studying cybersecurity and history, learning
+					new things.
+				</p>
+			</div>
+		</div>
+
+		<!-- Fourth row: image and text -->
+		<div style="display: flex; align-items: center; margin-top: 20px">
+			<img
+				src="https://a-31-whistleblowing-app.s3.us-east-2.amazonaws.com/advising_app/images/rain.jpg"
+				alt="rain.jpg"
+				style="
+					max-width: 250px;
+					min-width: 150px;
+					height: auto;
+					margin-left: 200px;
+				"
+			/>
+
+			<div style="margin-left: 20px; padding-right: 75px; padding-left: 25px">
+				<p style="color: white">
+					Katherine Chacon Cai is a student at the University of Virginia
+					studying Computer Science and minoring in English. She works with
+					others to build websites that solve everyday problems. Her skills
+					focus on practical solutions and straightforward web development. She
+					was the Requirements Manager in this project.
+				</p>
+				<p style="color: white">
+					Interests: reading, violin, sketching, going on walks, photography,
+					baking.
+				</p>
+			</div>
+		</div>
+
+		<!-- Fifth row: image and text -->
+		<div
+			style="
+				display: flex;
+				align-items: center;
+				margin-top: 20px;
+				padding-bottom: 20px;
+			"
+		>
+			<img
+				src="https://a-31-whistleblowing-app.s3.us-east-2.amazonaws.com/advising_app/images/allen.jpg"
+				alt="allen.jpg"
+				style="
+					max-width: 250px;
+					min-width: 150px;
+					height: auto;
+					margin-left: 200px;
+				"
+			/>
+
+			<div style="margin-left: 20px; padding-right: 75px; padding-left: 25px">
+				<p style="color: white">
+					Zhangchi Chen is a fourth-year student at the University of Virginia,
+					majoring in Biology and Computer Science. He aspires to integrate AI
+					with healthcare to revolutionize the industry. He enjoys tackling
+					various challenges and finding innovative solutions. He was the
+					Software Architect in this project.
+				</p>
+				<p style="color: white">
+					Interests: soccer, basketball, mixology, photography.
+				</p>
+			</div>
+		</div>
+	</div>
+	<footer class="footer">
+		<p>
+			Disclaimer: Parking Buster is a class project. No real information should
+			be submitted through this application as the system is not monitored.
+		</p>
+	</footer>
+</body>

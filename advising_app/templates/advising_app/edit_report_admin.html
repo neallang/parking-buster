@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>User Home</title>
+    <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+    rel="stylesheet"
+    />
+    <link
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        rel="stylesheet"
+    />
+    <style>
+        body {
+                padding-bottom: 50px; /* Adjust based on the footer's height */
+
+                font-family: 'Poppins', sans-serif;
+            h1 {
+                font-size: 45px;
+                }
+            p {
+                font-size: 18px;
+            }
+            background-image: url('https://static.vecteezy.com/system/resources/previews/005/117/235/original/minimalist-dark-gradient-wave-background-simple-design-for-your-website-vector.jpg');
+        }
+         .back-button {
+        display: inline-block;
+        padding: 8px 18px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 15px;
+        font-size: 18px;
+        margin-top: 25px;
+        margin-left: 25px;
+      }
+        .back-button:hover {
+        text-decoration: none;
+      }
+
+      .back-button:focus {
+        outline: none;
+        text-decoration: none;
+      }
+        .back-button, .back-button:hover, .back-button:focus {
+        text-decoration: none;
+        }
+        .container, .file-container {
+            text-align: center; /* Center align the text */
+            color: white; /* Make text color white */
+            margin-top: 20px; /* Adjusted margin for better spacing */
+
+        }
+        .description-container, .license-container, .color-container, .makeModel-container, .location-container {
+            text-align: center; /* Center align the text */
+            color: white; /* Make text color white */
+            margin-top: 20px; /* Adjusted margin for better spacing */
+            border: 2px solid orange; /* Uniform orange border */
+            padding: 10px; /* Padding for spacing */
+        }
+
+        .subject-container h1, .user-container h2 {
+            margin: 0;
+            padding-top: 20px;
+            text-align: center; /* Center align the text */
+            color: white; /* Make text color white */
+        }
+        .btn-warning {
+            padding: 4px 6px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            background-color: #007bff;
+            border: none;
+        }
+        .navbar .btn-danger {
+        padding: 4px 6px;
+        text-decoration: none;
+        font-size: 18px;
+        color: white;
+        font-family: 'Poppins', sans-serif;
+    }
+        .btn-warning:hover {
+            color: black;
+            background-color: #007bff
+        }
+        .btn-danger:hover {
+            color: black;
+
+        }
+            .navbar a {
+            text-decoration: none;
+            color: inherit; /* Ensures the color is inherited from the button class */
+
+        }
+        .footer{
+			text-align: center;
+			padding: 3px;
+			border-radius: 10px;
+			background-color: #ffa500;
+			color: white;
+			width: 100%;
+			position: fixed;
+			bottom: 0;
+			left: 0;
+		}
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'advising_app:index' %}">
+            <span style="
+                font-family: 'Poppins', sans-serif;
+                font-size: 24px;
+                background-color: white;
+                color: black;
+                text-shadow: 1px 1px 2px #ccc;
+                border: 1px solid black; /* Creates a thin black border */
+                border-radius: 3px; /* Optional: Rounds the corners slightly */
+            ">
+                📢 Parking Buster
+            </span>
+        </a>
+        <div class="tab">
+            <button class="btn btn-warning">
+                <a href="{% url 'advising_app:about' %}">About Parking Buster</a>
+            </button>
+            <button class="btn btn-warning">
+                <a href="{% url 'advising_app:us' %}">Meet Us</a>
+            </button>
+        </div>
+        <div class="ml-auto d-flex align-items-center">
+            <a class="btn btn-danger" href="/logout">Log Out</a>
+        </div>
+    </nav>
+
+    <a href="javascript:history.back()" class="back-button">&larr;</a>
+
+    <div class="subject-container">
+        <h1>Subject: {{ report.subject }}</h1>
+    </div>
+
+    <div class="user-container">
+        <h2>
+            {% if report.user_profile.user.username == "AnonymousUser" %}
+                Form Submitted Anonymously
+            {% else %}
+                Username: {{ report.user_profile.user.username }}
+            {% endif %}
+        </h2>
+    </div>
+
+    <div class="container mt-4">
+    <!-- First row with the top 4 boxes -->
+    <div class="row d-flex align-items-stretch">
+        <div class="col-md-3 col-lg-3 d-flex">
+            <div class="license-container" style="flex: 1; overflow: auto; word-break: break-word;">
+                <h5>License Plate</h5>
+                <p>{{ report.license_plate|default:"No information provided" }}</p>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-lg-3 d-flex">
+            <div class="color-container" style="flex: 1; overflow: auto; word-break: break-word;">
+                <h5>Color</h5>
+                <p>{{ report.color|default:"No information provided" }}</p>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-lg-3 d-flex">
+            <div class="makeModel-container" style="flex: 1; overflow: auto; word-break: break-word;">
+                <h5>Make/Model</h5>
+                <p>{{ report.make_model|default:"No information provided" }}</p>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-lg-3 d-flex">
+            <div class="location-container" style="flex: 1; overflow: auto; word-break: break-word;">
+                <h5>Location</h5>
+                <p>{{ report.location|default:"No information provided" }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Second row with description -->
+    <div class="row d-flex align-items-stretch">
+        <div class="col-md-12 col-lg-12 d-flex">
+            <div class="description-container" style="flex: 1; overflow: auto; word-break: break-word;">
+                <h5>Description</h5>
+                <p>{{ report.description }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+    <div class="container">
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="status" class="white-label">Status:</label>
+                <select class="form-control" id="status" name="status">
+                    {% for status_choice in form.fields.status.choices %}
+                        <option value="{{ status_choice.0 }}" {% if report.status == status_choice.0 %}selected{% endif %}>
+                            {{ status_choice.1 }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            {% if form.notes %}
+            <div class="form-group">
+                <label for="notes" class="white-label">Notes:</label>
+                <textarea class="form-control" id="notes" name="notes" rows="3">{{ form.notes.value|default_if_none:'' }}</textarea>
+            </div>
+            {% endif %}
+            <div class="d-flex justify-content-center mt-3 pb-3">
+                <button type="submit" class="btn btn-primary">Update Report</button>
+            </div>
+        </form>
+    </div>
+
+    {% if report.supportDocs %}
+    <!-- File container with adjusted height and alignment -->
+    <div class="file-container d-flex justify-content-center align-items-center" style="min-height: 400px; padding: 10px;">
+        {% with report.supportDocs.url as file_url %}
+            {% if file_url|slice:"-4:" == '.jpg' or file_url|slice:"-5:" == '.jpeg' %}
+                <img src="{{ file_url }}" alt="Uploaded image" style="max-width: 500px; max-height: 500px;" />
+            {% elif file_url|slice:"-4:" == '.txt' %}
+                <iframe src="{{ file_url }}" style="width: 500px; height: 500px;"></iframe>
+            {% elif file_url|slice:"-4:" == '.pdf' %}
+                <iframe src="{{ file_url }}" style="width: 500px; height: 500px;"></iframe>
+            {% endif %}
+        {% endwith %}
+    </div>
+{% endif %}
+
+    <footer class="footer">
+		<p>Disclaimer: Parking Buster is a class project. No real information should be submitted through this application as the system is not monitored.</p>
+	</footer>
+
+</body>
+</html>
