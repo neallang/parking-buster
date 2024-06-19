@@ -30,24 +30,24 @@ import boto3
 #    exist if they aren't and will trigger an error."""
 
 
-def getMediaFileKeys(aws_access_key, aws_secret_key):
-    session = boto3.Session(aws_access_key_id=aws_access_key, aws_secret_access_key=aws_secret_key)
-    s3 = session.resource('s3')
-    media_bucket = s3.Bucket(AWS_STORAGE_BUCKET_NAME)
-
-    files = []
-
-    for object in media_bucket.objects.all():
-        if not object.key.startswith('admin/'):
-            #os.path.splitext splits into filename and extension
-            extension = os.path.splitext(object.key)[1]
-            files.append({
-                'key': object.key,
-                'url': f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/{object.key}',
-                'extension': extension
-            })
-
-    return files
+# def getMediaFileKeys(aws_access_key, aws_secret_key):
+#     session = boto3.Session(aws_access_key_id=aws_access_key, aws_secret_access_key=aws_secret_key)
+#     s3 = session.resource('s3')
+#     media_bucket = s3.Bucket(AWS_STORAGE_BUCKET_NAME)
+#
+#     files = []
+#
+#     for object in media_bucket.objects.all():
+#         if not object.key.startswith('admin/'):
+#             #os.path.splitext splits into filename and extension
+#             extension = os.path.splitext(object.key)[1]
+#             files.append({
+#                 'key': object.key,
+#                 'url': f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/{object.key}',
+#                 'extension': extension
+#             })
+#
+#     return files
 
 
 def index(request):
@@ -56,7 +56,7 @@ def index(request):
         username = request.user.username
         #is_admin = request.user.profile.admin
         if request.user.profile.site_admin and not request.user.is_superuser: # Admin path
-            bucketKeys = getMediaFileKeys(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
+            # bucketKeys = getMediaFileKeys(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
             reports = Report.objects.all().order_by('-created_at')
             new_reports = Report.objects.filter(status='New').order_by('-created_at')
             in_progress_reports = Report.objects.filter(status='In Progress').order_by('-created_at')
@@ -65,7 +65,7 @@ def index(request):
                 'is_authenticated': True,
                 'first_name': first_name,
                 'username': username,
-                'bucket_keys': bucketKeys,
+                # 'bucket_keys': bucketKeys,
                 'reports': reports,
                 'new_reports': new_reports,
                 'in_progress_reports': in_progress_reports,
@@ -165,7 +165,7 @@ def view_report_user(request, report_id):
     report = get_object_or_404(Report, pk=report_id)
     if request.user.username != report.user_profile.user.username:
         return HttpResponseRedirect(reverse("advising_app:index"))
-    getMediaFileKeys(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
+    # getMediaFileKeys(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY)
     return render(request, 'advising_app/view_report_user.html', {'report': report})
 
 def edit_report_admin(request, report_id):
@@ -197,6 +197,6 @@ def delete_report(request, report_id):
         return HttpResponseForbidden()
 
 
-AWS_ACCESS_KEY_ID = 'AKIA4MTWKUDNWCFQZWKK'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'a-31-whistleblowing-app'
+# AWS_ACCESS_KEY_ID = 'AKIA4MTWKUDNWCFQZWKK'
+# AWS_SECRET_ACCESS_KEY = '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'
+# AWS_STORAGE_BUCKET_NAME = 'a-31-whistleblowing-app'
