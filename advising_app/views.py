@@ -11,17 +11,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 
 from .forms import ReportForm, AdminViewForm
-from .models import Report  # Make sure you import the Report model
-
-import boto3
-
-# def example_view(request):
-#     if request.user.is_authenticated:
-#         user_profile = request.user.profile
-#         # testing!!!! is gonna be changed
-#         user_profile.admin = "New bio"
-#         user_profile.save()
-
+from .models import Report
 
 """The index page is where users log in. If successful, 
     they are then passed to the user_home page, where their name
@@ -126,26 +116,18 @@ def submitReport(request):
                 redirect_url = reverse("advising_app:index")  # Redirect anonymous users here
             return HttpResponseRedirect(redirect_url)
         else:
-            # If form is not valid, you might want to show the form again with errors
             form = ReportForm()
-            # Decide where to redirect or what to do with the form if it's not valid
-            # This example simply redirects to the index; adjust as necessary
             return HttpResponseRedirect(reverse("advising_app:index"))
 
-    # If not a POST request, handle as necessary (e.g., redirect or show a form)
     return HttpResponseRedirect(reverse("advising_app:index"))
 
 def renderReportForm(request):
     form = ReportForm(use_required_attribute=False)
     if request.user.is_authenticated:
-        # For authenticated users, get the username from the user's profile
         user_name = request.user.username
     else:
-        # For anonymous users, you might choose a placeholder or the anonymous username
-        user_name = "AnonymousUser"  # or "anonymous_user", if you prefer to display the actual username
+        user_name = "AnonymousUser"
 
-    # The method doesn't change form instantiation based on the method being POST,
-    # so I'm assuming it's primarily GET requests that this handles for showing the form.
     return render(request, "advising_app/reportForm.html", {'form': form, 'username': user_name})
 
 def logout_prompt(request):
