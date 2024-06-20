@@ -196,7 +196,7 @@ def delete_report(request, report_id):
     else:
         return HttpResponseForbidden()
 
-
-# AWS_ACCESS_KEY_ID = 'AKIA4MTWKUDNWCFQZWKK'
-# AWS_SECRET_ACCESS_KEY = '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'
-# AWS_STORAGE_BUCKET_NAME = 'a-31-whistleblowing-app'
+#omitted for privacy reasons. Amazon S3 account has been shut down since May 2024.
+# AWS_ACCESS_KEY_ID = ''
+# AWS_SECRET_ACCESS_KEY = ''
+# AWS_STORAGE_BUCKET_NAME = '
