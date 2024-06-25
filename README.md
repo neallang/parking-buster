@@ -1,7 +1,7 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/qgEWmaMc)
 # Parking Buster
 
-Welcome to Parking Buster, the reporting app for bad parking! This project was created in CS 3240 during the Spring 2024 semester. Throughout the process, I was the DevOps manager, meaning I focused more on back end development and integrating each technology to work with our project. This website has some cool features, such as Google Authentication, Amazon S3 file storage (no longer supported), different users / interfaces / functionalities, JavaScript, internal notifications, and more! Read more to understand how the website works and feel free to give it a try! It is currently deployed via PythonAnywhere. [Live Site](https://neallang.pythonanywhere.com/).
+Welcome to Parking Buster, the reporting app for bad parking! This project was created in CS 3240 during the Spring 2024 semester. Throughout the process, I was the DevOps manager, meaning I focused more on back end development and integrating each technology to work with our project. This website has some cool features, such as Google Authentication, Amazon S3 file storage (no longer supported), different users / interfaces / functionalities, JavaScript, internal notifications, and more! Read more to understand how the website works and feel free to give it a try! It is currently deployed via PythonAnywhere. [Live Site](https://neallang.pythonanywhere.com/)
 
 ## Users
 
